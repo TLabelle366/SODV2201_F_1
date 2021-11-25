@@ -1,0 +1,67 @@
+/*==================================================================================================================*/
+/*This is the section for the Contact form*/
+.CForm{
+    background-color: rgb(86, 143, 153);
+    padding-bottom: 2.0%;
+    padding-left: 2.0%;
+    padding-right: 2.0%;
+    margin-left: 20%;
+    margin-right: 25%;
+  }
+  #Title{
+  text-align: center;
+    border-bottom-style: solid;
+    border-color: rgb(5, 5, 5)
+  }
+  .innerWrap{
+    border-top-style: solid;
+    border-bottom-style: solid;
+    padding: 4%;
+  }
+  .questionInput{
+    width: 50%;
+    height: 100px;
+  }
+  .topicDrop, .courseDrop{
+    margin-bottom: 2%;
+  }
+  /*==================================================================================================================*/
+
+  /*==================================================================================================================*/
+/*This is a testing phase pop-up for Contact side*/
+.modal, .overlay{
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+  }
+  .overlay{
+    background: rgba(49,49,49,0.8);
+  }
+  .modal-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+  }
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+    border-radius: 50%;
+    background-color: rgb(190, 61, 61);
+  }
+  .heading{
+    border-bottom-style:solid ;
+  }
+  

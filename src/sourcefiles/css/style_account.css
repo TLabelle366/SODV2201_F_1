@@ -1,0 +1,28 @@
+.AForm{
+    background-color: rgb(86, 143, 153);
+    padding-bottom: 2.0%;
+    padding-left: 2.0%;
+    padding-right: 2.0%;
+    margin-left: 25%;
+    margin-right: 20%;
+  }
+  .spans{
+    font-weight: 700;
+    font-size: large;
+  }
+  #pInfo{
+    padding-top:4%;
+    padding-left:3%;
+    border-top: solid rgb(57, 66, 70);
+  }
+  #sInfo{
+    padding-bottom:4%;
+    padding-left:3%;
+    border-bottom: solid rgb(57, 66, 70);
+  }
+  #logout{
+    float: right;
+  }
+  #tran{
+    margin-left:5%;
+  }

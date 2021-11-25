@@ -1,0 +1,47 @@
+/*This section is for Transcript/Courses side*/
+.TForm{
+    background-color: rgb(86, 143, 153);
+    padding-bottom: 2.0%;
+    padding-left: 2.0%;
+    padding-right: 2.0%;
+    margin-left: 15%;
+    margin-right: 10%;
+  }
+
+.course_Window{
+  background-color: white;
+  padding: 1.5%;
+}
+
+.about_Btn{
+  float: right;
+  width: 110px;
+  height: 50px;
+  background-color: rgb(96, 126, 138);
+  text-align: center;
+  color: aliceblue;
+  font-size: x-large;
+  margin-right: 2%;
+}
+
+.course_Specific{
+  border-bottom-style:solid ;
+  padding-bottom: 1.5;
+}
+
+.cID{
+  float: right;
+}
+
+#curGPA{
+  float: right;
+}
+
+#credits{
+  float:right;
+}
+
+#searchBar{
+  width: 300px;
+  font-size: x-large;
+}

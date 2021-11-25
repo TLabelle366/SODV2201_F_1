@@ -1,0 +1,24 @@
+.NavBut {
+    white-space: pre-wrap;
+    padding:8px;
+    margin: 5px;
+    border: #acc3e8, 1px solid;
+    border-radius: 40%;
+    background-color: #acc3e8;
+    width: contain;
+    display: inline;
+  }
+.pProg
+{
+  
+  margin-right: 5px;
+  margin-left: 2.5%;
+  white-space: pre-wrap;
+  text-indent: 10px;
+  width: 90%;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid black;
+  z-index: 1;
+  margin-bottom: 15px;
+}

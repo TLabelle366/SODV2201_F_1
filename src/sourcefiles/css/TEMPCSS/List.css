@@ -1,0 +1,65 @@
+.Mc {
+    Width:80%;
+    position: relative;
+    background-color: grey;
+    top :25px;
+    left:0%;
+    height:80%;
+    z-index: 0;
+}
+.Mc2 {
+    padding: 1%;
+    Width:68%;
+    position: relative;
+    background-color: grey;
+    align-items: baseline;
+    border:5px solid;
+    top :25px;
+    left:15%;
+    height:650px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.list{
+    grid-column-start: auto;
+    width: 90%;
+    display: block;
+    list-style-type:none;
+}
+.CLi{
+
+    white-space: pre-wrap;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    border: 1px solid blue;
+    display: inline-block;
+    width: 95%;
+}
+.title
+{
+    margin-right: 5px;
+    margin-left: 2.5%;
+    margin-bottom:0;
+    white-space: pre-wrap;
+    text-indent: 10px;
+    width: 90%;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid black;
+    z-index: 1;
+}
+.contentP{
+    max-height: 150px;
+    border-top: none;
+    border-bottom: 1px solid black;
+    margin-top: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    display: inline-block;
+    margin-left: 2.5%;
+    width: 90%;
+    text-indent: 5px;
+    padding-left: 10px;
+}

@@ -1,0 +1,44 @@
+/* Sign Up Page
+---------------- */
+#signup-page-body {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    padding: 3%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#signupForm {
+    padding: 4%;
+    border-radius: 5%;
+    width: fit-content;
+    height: fit-content;
+    border-style: solid;
+    border-width: 4%;
+    transform: translate(-7%, -7%);
+    border-color: black;
+    background-color: #acc3e8;
+}
+#nameGrid {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+}
+#emailGrid {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}
+#personalDetGrid {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}
+#progInfoGrid {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}
+#passGrid {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}

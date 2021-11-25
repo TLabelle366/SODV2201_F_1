@@ -1,0 +1,36 @@
+body {
+    background: #4c82d9;
+}
+
+.customBR {
+    border-top: solid;
+}
+
+.mainBtn{ /*This is for all buttons*/
+    font-size: medium;
+    margin-top: 3%;
+    margin-right: 5%;
+    width: 28%;
+    height: 40px;
+  
+    background-color: rgb(96, 126, 138);
+    text-align: center;
+    color: aliceblue;
+  }
+
+  #mainContainer {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    padding: 3%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#logoutButton {
+    position: absolute;
+    top:0px;
+    right:0px;
+}
