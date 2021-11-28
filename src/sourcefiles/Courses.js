@@ -1,94 +1,30 @@
+/* NOTES
+TO-DO
+
+Edits
+- Courses.constructor()
+*/
+
 //This is for the course listing page
 import React from "react";
 import AddPopUp from "./components/Added-Course-Pop-up";
 import AboutPopUp from "./components/Temp-About-Popup";
 //import './css/style_transcript_courses.css';
 
+import { DbController } from './sourcefiles/database/DatabaseController';
+
 //Jo Imports
 import './css/TEMPCSS/course.css';
 import './css/TEMPCSS/List.css';
+
+//Constants
+const db = new DbController;
 
 export class Courses extends React.Component {
     constructor() {
         super()
         this.state = {
-            courseData: [
-                {
-                    courseID: 1234,
-                    courseName: "SCP-001",
-                    passinggrade: 50,
-                    teacher: "Mr.Lewis",
-                    status: "N/A",
-                    sDate: "05/12/2021",
-                    credits: 3
-                }, {
-                    courseID: 4560,
-                    courseName: "MGMT-765",
-                    passinggrade: 50,
-                    teacher: "Mr.Lewis",
-                    status: "N/A",
-                    sDate: "05/12/2021",
-                    credits: 3
-                }, {
-                    courseID: 7879,
-                    courseName: "Tech-786",
-                    passinggrade: 50,
-                    teacher: "Mr.Lewis",
-                    status: "N/A",
-                    sDate: "05/12/2021",
-                    credits: 3
-                },
-                {
-                    courseID: 1299,
-                    courseName: "MTH-785",
-                    passinggrade: 50,
-                    teacher: "Mrs.Jenkins",
-                    status: "N/A",
-                    sDate: "05/12/2022",
-                    credits: 3
-                }, {
-                    courseID: 4581,
-                    courseName: "MGMT-765",
-                    passinggrade: 50,
-                    teacher: "Mr.Lewis",
-                    status: "N/A",
-                    sDate: "05/12/2022",
-                    credits: 3
-                }, {
-                    courseID: 7800,
-                    courseName: "Tech-1000",
-                    passinggrade: 50,
-                    teacher: "Mr.Jones",
-                    status: "N/A",
-                    sDate: "05/12/2022",
-                    credits: 3
-                },
-                {
-                    courseID: 1316,
-                    courseName: "JV-231",
-                    passinggrade: 50,
-                    teacher: "Mrs.Carter",
-                    status: "N/A",
-                    sDate: "N/A",
-                    credits: 3
-                }, {
-                    courseID: 4260,
-                    courseName: "PSCY-7100",
-                    passinggrade: 50,
-                    teacher: "N/A",
-                    status: "N/A",
-                    sDate: "N/A",
-                    credits: 3
-                }, {
-                    courseID: 7679,
-                    courseName: "MECH-2315",
-                    passinggrade: 50,
-                    teacher: "N/A",
-                    status: "N/A",
-                    sDate: "N/A",
-                    credits: 3
-                },
-            ],
+            courseData: db.getAllCourses(),
             search: ""
         }
     }
@@ -111,7 +47,6 @@ export class Courses extends React.Component {
                     <p></p>
                     <div className="course_Window">
                         {filteredCourses.map(data => {
-
                             return (
                                 <div className="course_Specific">
                                     <AddPopUp />
@@ -129,32 +64,12 @@ export class Courses extends React.Component {
                         )}
                     </div>
                 </div>
-                {/**/}
-            </div >
+            </div>
         )
     }
 }
 
 //export default Courses
-
-
-/* function CourseObject() {
-    this.Cname = Cname;
-    this.Cid = Cid;
-    this.CDesc = CDesc;
-    this.CSeatsTaken = CSeatsTaken;
-    this.CTotalSeats = this.CTotalSeats;
-    this.Sdate = Sdate;
-    this.Edate = Edate;
-}*/
-
-
-function course(coursename, coursestartdate, courseenddate) {
-    this.Cname = coursename;
-    this.Sdate = coursestartdate;
-    this.Edate = courseenddate;
-}
-
 const SearchBar = {
     width:'99%'
 }
@@ -163,18 +78,10 @@ export class AdminCourses extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Search: "",
+            search: "",
             course: "",       
             Cedit: false,
-            Coruses: [
-                new course('Science101', 'january 15 2022', 'april23'),
-                new course('Math101', 'january 15 2022', 'april23'),
-                new course('History101', 'january 15 2022', 'april23'),
-                new course('Programing101', 'january 15 2022', 'april23'),
-                new course('roject management101', 'january 15 2022', 'april23'),
-                new course('Networking', 'january 15 2022', 'april23'),
-                new course('working in a team', 'january 15 2022', 'april23')  
-            ]               
+            courseData: db.getAllCourses()
         }
 
         // binds event listeneres to the component so they can reference it in code
@@ -188,35 +95,36 @@ export class AdminCourses extends React.Component {
 
     // event handlers
     // tracks which course you are currently viewing the expanded information for 
-    HandleClick(eventelement) {
-        if(this.state.course === eventelement.target.value) { this.setState({course:""}); }
-        else { this.setState({course: eventelement.target.value}); }
+    HandleClick(targettedelement) {
+        if(this.state.course === targettedelement.target.value) { this.setState({course:""}); }
+        else { this.setState({course: targettedelement.target.value}); }
     }
 
     // chekcs to see all nescecary info was provided then adds a new entry
     addNewItem(editButton) {
-        if(this.state.Cname === "" || this.state.Sdate === "" || this.state.Edate === "") {
-            alert( " please fill in all three fields to add a new entry")
+        if(this.state.courseName === "" || this.state.sDate === "" || this.state.eDate === "") {
+            alert("Please fill in all three fields to add a new entry");
         }
         else {
-            var CFill = [...this.state.Coruses];
-            CFill.push(new course(        
-            this.refs.InCname.value,
-            this.refs.InSdate.value,
-            this.refs.InEdate.value));
-            this.refs.InCname.value ="";
-            this.refs.InSdate.value ="";
-            this.refs.InEdate.value ="";
-            this.setState({Coruses: CFill});
+            var CFill = [...this.state.courseData];
+
+            CFill.push(new course(
+                this.refs.courseName_ref.value,
+                this.refs.sDate_ref.value,
+                this.refs.eDate_ref.value
+            ));
+
+            this.refs.courseName_ref.value="";
+            this.refs.sDate_ref.value="";
+            this.refs.eDate_ref.value="";
+
+            //SET A PROPER DATABASE UPDATE
+            this.setState({courseData: CFill});
         }
     }
 
     // filters out course results by exact search
-    Search(searchElement) {
-        this.setState({Search: searchElement.target.value});
-        console.log("hi");
-        console.log(this.state.Search);
-    }
+    Search(searchElement) { this.setState({Search: searchElement.target.value}); }
 
     // adds input boxes to make course info editable
     edit() { this.setState({Cedit : true}) }
@@ -224,32 +132,32 @@ export class AdminCourses extends React.Component {
     // removes the selected course
     delete(e) {
         var Cfill = [];
-        for(var i=0; i<this.state.Coruses.length;i++) {
-            if(e.target.name !== this.state.Coruses[i].Cname ) {
-                Cfill.push(this.state.Coruses[i]);
+        for(var i=0; i < this.state.courseData.length; i++) {
+            if(e.target.name !== this.state.courseData[i].courseName ) {
+                Cfill.push(this.state.courseData[i]);
             }
         }
-        this.setState({Coruses:Cfill});
+        this.setState({courseData:Cfill});
     }
 
     // checks if any changes have been made tot eh coruse info and if they have records the new changes and remmoves the input fields for making changes
     done() {
         if(
-            this.refs.ECname.value !== this.refs.ECname.defaultvalue || 
-            this.refs.ESdate.value !== this.refs.ESdate.defaultvalue ||
-            this.refs.EEdate.value !== this.refs.EEdate.defaultvalue
+            this.refs.courseName_ref.value !== this.refs.courseName_ref.defaultvalue || 
+            this.refs.sDate_ref.value !== this.refs.sDate_ref.defaultvalue ||
+            this.refs.eDate_ref.value !== this.refs.eDate_ref.defaultvalue
             ) {
-            var CFill = [...this.state.Coruses];
+            var CFill = [...this.state.courseData];
             
-            for(var i =0; i <CFill.length; i++) {
+            for(var i=0; i < CFill.length; i++) {
                 //console.log(CFill[i].Cname);
                 //console.log(CFill[i].Sdate);
                 //console.log(CFill[i].Edate);
-                if(CFill[i].Cname === this.refs.ECname.defaultValue) {
+                if(CFill[i].courseName === this.refs.courseName_ref.defaultValue) {
                     //console.log("Match Found")
-                    CFill[i].Cname = this.refs.ECname.value;
-                    CFill[i].Sdate = this.refs.ESdate.value;
-                    CFill[i].Edate = this.refs.EEdate.value;
+                    CFill[i].courseName = this.refs.courseName_ref.value;
+                    CFill[i].Sdate = this.refs.sDate_ref.value;
+                    CFill[i].Edate = this.refs.eDate_ref.value;
                     //console.log(CFill[i].Cname);
                     //console.log(CFill[i].Sdate);
                     //console.log(CFill[i].Edate);
@@ -258,111 +166,111 @@ export class AdminCourses extends React.Component {
             }
 
             this.setState({Cedit : false});
-            this.setState({Coruses: CFill});
+            this.setState({courseData: CFill});
         }
         else {
             this.setState({Cedit : false})
-            console.log("not reading changes");
+            //console.log("not reading changes");
         }
     }
 
     render() {
         return (
             <span className ="Mc">
-                <div className ="Mc2">
-                    <input type ="text" style={SearchBar} onChange={e => this.Search(e)} ></input>
-                    <ul classname = "list">{
-                        this.state.Coruses.map((Cname,i) => {
+                <div className="Mc2">
+                    <input type="text" style={SearchBar} onChange={e => this.Search(e)} ></input>
+                    <ul classname="list">{
+                        this.state.courseData.map((courseName, itt) => {
                             // checks if htere is any search values and renders appropriate info based on if there is a search or currently viewed course
-                            if(this.state.Search === "") {
-                                if(this.state.course === Cname.Cname) {
+                            if(this.state.search === "") {
+                                if(this.state.course === courseName.courseName) {
                                     if(this.state.Cedit === true) {
                                         return (
-                                            <li className="CLi" key ={Cname.cname}>
-                                                <p className = "title">course  Name:  {Cname.Cname}</p>
-                                                <button onClick={e => this.HandleClick(e)} value = {Cname.Cname}  >V</button><br></br>
-                                                <p  className="Cinfo"> course Name: {Cname.Cname}  course Start date: {Cname.Sdate}    course end date: {Cname.Edate}</p><br></br>
-                                                <p className ="inputP">Course name: </p>
-                                                <input type = "text" name = "Cname" className="input" ref="ECname" ></input>
-                                                <p className ="inputP"> Course start date: </p>
-                                                <input type = "text" name = "Sdate" className="input" ref="ESdate"></input>
-                                                <p className ="inputP">course end date: </p>
-                                                <input type = "text" name = "Edate" className="input"   ref="EEdate"></input><br></br>
-                                                <button onClick={() =>this.done()} className ="specificButts">done</button>
-                                                <button  className ="specificButts" onClick = {(e)=> this.delete(e)} name = {Cname.Cname}>Delete</button>
+                                            <li className="CLi" key ={courseName.courseName}>
+                                                <p className = "title">Course Name: {courseName.courseName}</p>
+                                                <button onClick={e => this.HandleClick(e)} value={courseName.courseName}>V</button><br></br>
+                                                <p className="Cinfo"> Course Name: {courseName.courseName}  Course Start Date: {courseName.sDate} Course End Date: {courseName.eDate}</p><br></br>
+                                                <p className="inputP">Course Name: </p>
+                                                <input type="text" name="courseName" className="input" ref="courseName_ref" ></input>
+                                                <p className ="inputP">Course Start Date: </p>
+                                                <input type = "text" name="sDate" className="input" ref="sDate_ref"></input>
+                                                <p className ="inputP">Course End Date: </p>
+                                                <input type = "text" name = "eDate" className="input" ref="eDate_ref"></input><br></br>
+                                                <button onClick={()=>this.done()} className ="specificButts">done</button>
+                                                <button className ="specificButts" onClick={(e)=>this.delete(e)} name={courseName.courseName}>Delete</button>
                                             </li>
                                         );
                                     }
 
                                     return (
-                                        <li className="CLi" key ={Cname.cname}>
-                                            <p className = "title">course Name:  {Cname.Cname}</p>
-                                            <button onClick={e => this.HandleClick(e)} value={Cname.Cname}>V</button>
+                                        <li className="CLi" key ={courseName.courseName}>
+                                            <p className="title">course Name:  {courseName.courseName}</p>
+                                            <button onClick={e=>this.HandleClick(e)} value={courseName.courseName}>V</button>
                                             <br/>
-                                            <p className="Cinfo"> course Name: {Cname.Cname}  course Start date: {Cname.Sdate}    course end date: {Cname.Edate}</p>
+                                            <p className="Cinfo"> Course Name: {courseName.courseName} Course Start Date: {courseName.Sdate} Course End Date: {courseName.Edate}</p>
                                             <br/>
                                             <button onClick={() =>this.edit()} className ="specificButts">Edit</button>
-                                            <button  className ="specificButts" onClick = {(e)=> this.delete(e)} name = {Cname.Cname}>Delete</button>
+                                            <button className="specificButts" onClick={(e)=>this.delete(e)} name={courseName.courseName}>Delete</button>
                                         </li>
                                     );
                                 }
                                 else {
                                     return (
-                                        <li className="CLi" key ={Cname.cname}>
-                                            <p className = "title">course Name: {Cname.Cname}</p>
-                                            <button onClick={e => this.HandleClick(e)} value = {Cname.Cname}>V</button>
+                                        <li className="CLi" key ={courseName.courseName}>
+                                            <p className="title">Course Name: {courseName.courseName}</p>
+                                            <button onClick={e=>this.HandleClick(e)} value={courseName.courseName}>V</button>
                                         </li>
                                     );
                                 }
                             }
                             else {
-                                var fillSlow = this.state.Search.toLowerCase(), FillSUp = this.state.Search.toUpperCase();
+                                var fillSlow=this.state.search.toLowerCase(), FillSUp=this.state.search.toUpperCase();
 
-                                for(var i=0;i<this.Search.length+1;i++) {
-                                    if(i==this.Search.length) {
-                                        if(this.state.course === Cname.Cname && Cname.Cname.includes(this.state.Search)) {
+                                for(var itt=0; itt < this.Search.length+1; itt++) {
+                                    if(itt == this.Search.length) {
+                                        if(this.state.course === courseName.courseName && courseName.courseName.includes(this.state.search)) {
                                             if(this.state.Cedit === true) {
                                                 return (
-                                                    <li className="CLi" key ={Cname.cname}>
-                                                        <p className = "title">course  Name:  {Cname.Cname}</p>
-                                                        <button onClick={e=>this.HandleClick(e)} value={Cname.Cname}>V</button>
+                                                    <li className="CLi" key={courseName.courseName}>
+                                                        <p className = "title">course  Name:  {courseName.courseName}</p>
+                                                        <button onClick={e=>this.HandleClick(e)} value={courseName.courseName}>V</button>
                                                         <br></br>
-                                                        <p className="Cinfo"> course Name: {Cname.Cname}  course Start date: {Cname.Sdate}    course end date: {Cname.Edate}</p>
+                                                        <p className="Cinfo"> Course Name: {courseName.courseName} Course Start Date: {courseName.sDate} Course End Date: {courseName.eDate}</p>
                                                         <br/>
-                                                        <p className ="inputP">Course name:</p>
-                                                        <input type = "text" name = "Cname" className="input" ref="ECname"/>
+                                                        <p className ="inputP">Course Name: </p>
+                                                        <input type = "text" name = "courseName" className="input" ref="courseName_ref"/>
                                                         <p className ="inputP">Course start date:</p>
-                                                        <input type = "text" name = "Sdate" className="input" ref="ESdate"/>
+                                                        <input type = "text" name = "sDate" className="input" ref="sDate_ref"/>
                                                         <p className ="inputP">course end date:</p>
-                                                        <input type = "text" name = "Edate" className="input"   ref="EEdate"/>
+                                                        <input type="text" name="eDate" className="input" ref="eDate_ref"/>
                                                         <br/>
                                                         <button onClick={() =>this.done()} className ="specificButts">done</button>
-                                                        <button className ="specificButts" onClick={(e)=> this.delete(e)} name={Cname.Cname}>Delete</button>
+                                                        <button className ="specificButts" onClick={(e)=> this.delete(e)} name={courseName.courseName}>Delete</button>
                                                     </li>
                                                 )
                                             }
                                             return (
-                                                <li className="CLi" key ={Cname.cname}>
-                                                    <p className = "title">course  Name:  {Cname.Cname}</p>
-                                                    <button onClick={e => this.HandleClick(e)} value = {Cname.Cname}  >V</button>
+                                                <li className="CLi" key ={courseName.courseName}>
+                                                    <p className = "title">Course Name: {courseName.courseName}</p>
+                                                    <button onClick={e => this.HandleClick(e)} value={courseName.courseName}>V</button>
                                                     <br/>
-                                                    <p className="Cinfo"> course Name: {Cname.Cname}  course Start date: {Cname.Sdate} course end date: {Cname.Edate}</p>
+                                                    <p className="Cinfo">Course Name: {courseName.courseName}  Course Start date: {courseName.sDate} Course End Date: {courseName.eDate}</p>
                                                     <br/>
                                                     <button onClick={() =>this.edit()} className ="specificButts">Edit</button>
-                                                    <button  className ="specificButts" onClick = {(e)=> this.delete(e)} name = {Cname.Cname}>Delete</button>
+                                                    <button  className ="specificButts" onClick = {(e)=> this.delete(e)} name = {courseName.courseName}>Delete</button>
                                                 </li>
                                             )
                                         }
                                         else {
                                             return (
-                                                <li className="CLi"  key ={Cname.cname}>
-                                                    <p className = "title">course Name: {Cname.Cname}</p>
-                                                    <button onClick={e=>this.HandleClick(e)} value={Cname.Cname}>V</button>
+                                                <li className="CLi" key={courseName.courseName}>
+                                                    <p className="title">Course Name: {courseName.courseName}</p>
+                                                    <button onClick={e=>this.HandleClick(e)} value={courseName.courseName}>V</button>
                                                 </li>
                                             )
                                         }
                                     }
-                                    else if(Cname.Cname.includes(FillSUp[i])||Cname.Cname.includes(fillSlow[i])) { continue; }
+                                    else if(courseName.courseName.includes(FillSUp[itt])||courseName.courseName.includes(fillSlow[itt])) { continue; }
                                     else { break; }
                                 }
                             }
@@ -370,12 +278,16 @@ export class AdminCourses extends React.Component {
                     }</ul>
                 </div>
                 <div className ="NewCourse">
-                    <p className ="inputP">Course name: </p>
-                    <input type = "text" name = "Cname" className="input" ref="InCname" ></input>
-                    <p className ="inputP"> Course start date: </p>
-                    <input type = "text" name = "Sdate" className="input" ref="InSdate"></input>
-                    <p className ="inputP">course end date: </p>
-                    <input type = "text" name = "Edate" className="input"   ref="InEdate"></input>
+                    <p className="inputP">Course Name:</p>
+                    <input type="text" name="courseName" className="input" ref="courseName_ref"></input>
+                    <p className="inputP"> Course Start Date:</p>
+                    <input type="text" name = "sDate" className="input" ref="courseName_ref"></input>
+                    <p className="inputP">Course End Date:</p>
+                    <input type="text" name="eDate" className="input" ref="courseName_ref"></input>
+                    <p className="inputP">Teacher:</p>
+                    <input type="text" name="teacher" className="input" ref="teacher_ref"></input>
+                    <p className="inputP">Status:</p>
+                    <input type="text" name="status" className="input" ref="status_ref"></input>
                     <button onClick={() =>this.addNewItem()} className="NcAdd"> Add Item </button>
                 </div>
             </span>

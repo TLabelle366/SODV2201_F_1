@@ -1,5 +1,7 @@
 /* NOTES
-
+TO-DO
+- Custom side for the Admins
+- Account functionality
 */
 // Functionality Imports
 import * as React from 'react';
@@ -15,7 +17,6 @@ import Home from './sourcefiles/Home.js';
 import Account from './sourcefiles/Account.js';
 import { Contact, AdminContact } from './sourcefiles/Contact.js';
 import Transcript from './sourcefiles/Transcript.js';
-import { AdminCourses, Courses } from './sourcefiles/Courses.js';
 
 //CSS Imports
 import './App.css';
@@ -24,23 +25,6 @@ import './App.css';
 const db = new DbController;
 const tempAdminUsername = 'administrator';
 const tempAdminPassword = 'administrator';
-const C = "Course", P = "Program", CF = "Contact forms";
-
-const NavS = {
-    top:'0',
-    width:'100%',
-    height:'50px',
-    display: 'flex',
-    alignitems: 'center',
-    justifycontent: 'center',
-    backgroundColor:'grey',
-}
-
-const homnavstyle= { 
-    display:'inline-block',
-    position:'absolute',
-    left:'40%'
-   }
 
 //The class to export
 class Display extends React.Component {
